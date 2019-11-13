@@ -1,3 +1,3 @@
 export {
   fetchData
-} from './fetchData';
+} from './fetchDataAction';
