@@ -2,23 +2,29 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   tables: {
-    monday: [],
-    tuesday: [],
-    wednesday: [],
-    thursday: [],
-    friday: [],
-    saturday: [],
-    sunday: []
+    MONDAY: [],
+    TUESDAY: [],
+    WEDNESDAY: [],
+    THURSDAY: [],
+    FRIDAY: [],
+    SATURDAY: [],
+    SUNDAY: []
   }
 }
 
 const fetchDataSuccess = (state, { payload }) => {
+  let newTables = {
+    ...state.tables
+  };
+
+  payload.week.forEach(day => {
+    const weekDay = day.day_of_the_week;
+    newTables[weekDay].push(day)
+  });
+
   return {
     ...state,
-    tables: {
-      ...state.tables,
-      monday: payload.data
-    }
+    tables: newTables
   }
 }
 

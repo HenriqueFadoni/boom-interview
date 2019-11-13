@@ -1,11 +1,11 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-const fetchDataSuccess = data => {
+const fetchDataSuccess = week => {
   return {
     type: actionTypes.FETCH_DATA_SUCCESS,
     payload: {
-      data
+      week
     }
   }
 }
