@@ -1,6 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
+  error: false,
   tables: {
     MONDAY: [],
     TUESDAY: [],
@@ -13,14 +14,12 @@ const initialState = {
 }
 
 const fetchDataSuccess = (state, { payload }) => {
-  let newTables = {
-    ...state.tables
-  };
-
-  payload.week.forEach(day => {
+  const newTables = payload.week.reduce((allPosts, day) => {
     const weekDay = day.day_of_the_week;
-    newTables[weekDay].push(day)
-  });
+    allPosts = { ...state.tables };
+    allPosts[weekDay].push(day)
+    return allPosts
+  }, {});
 
   return {
     ...state,
@@ -28,9 +27,17 @@ const fetchDataSuccess = (state, { payload }) => {
   }
 }
 
+const fetchDataFail = state => {
+  return {
+    ...state,
+    error: true
+  }
+}
+
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_DATA_SUCCESS: return fetchDataSuccess(state, action);
+    case actionTypes.FETCH_DATA_SUCCESS: return fetchDataFail(state);
     default: return state;
   }
 }

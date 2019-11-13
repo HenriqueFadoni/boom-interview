@@ -10,14 +10,21 @@ const fetchDataSuccess = week => {
   }
 }
 
+const fetchDataFail = () => {
+  return {
+    type: actionTypes.FETCH_DATA_FAIL
+  }
+}
+
 export const fetchData = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get('https://frontend-test-api-server.herokuapp.com/photoshoots_daily/?limit=10');
+      const path = 'https://frontend-test-api-server.herokuapp.com/photoshoots_daily/?limit=10';
+      const { data } = await axios.get(path);
       dispatch(fetchDataSuccess(data));
     }
     catch (error) {
-      console.log(error)
+      dispatch(fetchDataFail());
     }
   }
 }
