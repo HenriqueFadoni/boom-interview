@@ -1,19 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import * as actions from './store/actions/index';
+import React from 'react';
 
-const App: React.FC = () => {
-  const dispatch = useDispatch();
+import Table from './components/Table';
 
-  useEffect(() => {
-    dispatch(actions.fetchData());
-  }, [dispatch]);
-
-  return (
-    <div className="App">
-      Test Boom
-    </div>
-  )
-};
+const App: React.FC = () => (
+  <div className="App">
+    <Table />
+  </div>
+)
 
 export default App;
