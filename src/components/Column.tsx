@@ -16,7 +16,13 @@ const Rows: React.FC<RowsProps> = ({ posts, isHeader = false }) => {
   ));
 
   return (
-    <div className={isHeader ? "table--header" : "table__row"}>
+    <div
+      className={
+        isHeader
+          ? "table--header"
+          : "table__row"
+      }
+    >
       {row}
     </div>
   )

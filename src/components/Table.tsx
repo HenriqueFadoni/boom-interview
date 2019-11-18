@@ -7,11 +7,11 @@ import Rows from './Column';
 const Table: React.FC = () => {
   const { tables } = useSelector((state: any) => state);
   const dispatch = useDispatch();
+  const displayRows = [];
 
-  // Breaking Tables Down into Types
-  const tableHeaders = ['TYPES']
-
+  // New Object based in Types
   let tableTypes: any = {
+    TYPE: ['TYPES'],
     EVENT: ['EVENT'],
     FOOD: ['FOOD'],
     REALESTATE: ['REAL ESTATE'],
@@ -24,10 +24,10 @@ const Table: React.FC = () => {
     dispatch(actions.fetchData());
   }, [dispatch]);
 
-  // Table Display
+  // Table Display - Breaking Tables Down into Types
   for (const table in tables) {
-    if (!tableHeaders.includes(table)) {
-      tableHeaders.push(table);
+    if (!tableTypes.TYPE.includes(table)) {
+      tableTypes.TYPE.push(table);
     }
 
     Object.keys(tables[table]).reduce((allPosts: any, post) => {
@@ -40,29 +40,29 @@ const Table: React.FC = () => {
     }, { ...tableTypes });
   }
 
+  // Creating JSX array
+  for (const type in tableTypes) {
+    if (type === 'TYPE') {
+      displayRows.push(
+        <Rows
+          key={tableTypes[type][0]}
+          posts={tableTypes[type]}
+          isHeader={true}
+        />
+      );
+    } else {
+      displayRows.push(
+        <Rows
+          key={type}
+          posts={tableTypes[type]}
+        />
+      );
+    }
+  }
+
   return (
     <div className="table__container">
-      <Rows
-        key={tableHeaders[0]}
-        posts={tableHeaders}
-        isHeader={true}
-      />
-      <Rows
-        key={tableTypes.FOOD[0]}
-        posts={tableTypes.FOOD}
-      />
-      <Rows
-        key={tableTypes.REALESTATE[0]}
-        posts={tableTypes.REALESTATE}
-      />
-      <Rows
-        key={tableTypes.OTHER[0]}
-        posts={tableTypes.OTHER}
-      />
-      <Rows
-        key={tableTypes.TOTAL[0]}
-        posts={tableTypes.TOTAL}
-      />
+      {displayRows}
     </div>
   )
 };
