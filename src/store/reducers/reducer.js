@@ -4,54 +4,54 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   error: false,
   tables: {
-    MONDAY: { 
-      EVENT: [], 
-      FOOD: [], 
-      REALESTATE: [], 
-      OTHER: [],
-      TOTAL: 0 
-    },
-    TUESDAY: { 
-      EVENT: [], 
-      FOOD: [], 
-      REALESTATE: [], 
-      OTHER: [],
-      TOTAL: 0 
-    },
-    WEDNESDAY: { 
-      EVENT: [], 
-      FOOD: [], 
-      REALESTATE: [], 
-      OTHER: [],
-      TOTAL: 0 
-    },
-    THURSDAY: { 
-      EVENT: [], 
-      FOOD: [], 
-      REALESTATE: [], 
-      OTHER: [],
-      TOTAL: 0 
-    },
-    FRIDAY: { 
-      EVENT: [], 
-      FOOD: [], 
+    MONDAY: {
+      EVENT: [],
+      FOOD: [],
       REALESTATE: [],
       OTHER: [],
-      TOTAL: 0 
+      TOTAL: 0
     },
-    SATURDAY: { 
-      EVENT: [], 
-      FOOD: [], 
-      REALESTATE: [], 
+    TUESDAY: {
+      EVENT: [],
+      FOOD: [],
+      REALESTATE: [],
       OTHER: [],
-      TOTAL: 0 
+      TOTAL: 0
     },
-    SUNDAY: { 
-      EVENT: [], 
-      FOOD: [], 
-      REALESTATE: [], 
+    WEDNESDAY: {
+      EVENT: [],
+      FOOD: [],
+      REALESTATE: [],
       OTHER: [],
-      TOTAL: 0 
+      TOTAL: 0
+    },
+    THURSDAY: {
+      EVENT: [],
+      FOOD: [],
+      REALESTATE: [],
+      OTHER: [],
+      TOTAL: 0
+    },
+    FRIDAY: {
+      EVENT: [],
+      FOOD: [],
+      REALESTATE: [],
+      OTHER: [],
+      TOTAL: 0
+    },
+    SATURDAY: {
+      EVENT: [],
+      FOOD: [],
+      REALESTATE: [],
+      OTHER: [],
+      TOTAL: 0
+    },
+    SUNDAY: {
+      EVENT: [],
+      FOOD: [],
+      REALESTATE: [],
+      OTHER: [],
+      TOTAL: 0
     }
   }
 }
@@ -62,12 +62,11 @@ const fetchDataSuccess = (state, { payload }) => {
     const weekDay = day.day_of_the_week;
     const postType = day.type.split(' ').join('').toUpperCase();
 
-    allPosts = { ...state.tables };
     allPosts[weekDay][postType].push(day);
     allPosts[weekDay].TOTAL += 1;
 
     return allPosts
-  }, {});
+  }, { ...state.tables });
 
   return {
     ...state,

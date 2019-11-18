@@ -1,0 +1,44 @@
+$color-grey: grey;
+$color-white: white;
+
+.table {
+	&__container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(5, 1fr);
+		row-gap: 1rem;
+
+		margin: 3rem;
+		background-color: $color-grey;
+
+		text-align: center;
+		font-size: 1.4rem;
+		color: $color-white;
+	}
+
+	&__row {
+		display: grid;
+		grid-template-columns: repeat(8, minmax(min-content, 1fr));
+    grid-template-rows: 1fr;
+    
+    padding: 1rem;
+	}
+
+	&__row:hover {
+		cursor: pointer;
+		background-color: lighten($color-grey, 10%);
+  }
+  
+  &--header {
+    display: grid;
+		grid-template-columns: repeat(8, minmax(min-content, 1fr));
+    grid-template-rows: 1fr;
+    padding: 1rem;
+
+    background-color: darken($color-grey, 10%);
+  }
+}
+
+.left {
+	text-align: left;
+}
