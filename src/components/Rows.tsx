@@ -4,7 +4,7 @@ import * as actions from '../store/actions/index';
 
 interface RowsProps {
   type?: string | any,
-  posts: Array<string | number>,
+  posts: Array<string>,
   isHeader?: boolean
 }
 

@@ -19,7 +19,7 @@ const fetchDataFail = () => {
 export const fetchData = () => {
   return async dispatch => {
     try {
-      const path = 'https://frontend-test-api-server.herokuapp.com/photoshoots_daily/?limit=10';
+      const path = 'https://frontend-test-api-server.herokuapp.com/photoshoots_daily/?limit=50';
       const { data } = await axios.get(path);
       dispatch(fetchDataSuccess(data));
     }

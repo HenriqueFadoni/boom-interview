@@ -1,68 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../store/actions/index';
+import { fetchData } from '../store/actions/index';
 
 import Rows from './Rows';
 
-const Table: React.FC = () => {
+const Table: FunctionComponent = () => {
   const { tables } = useSelector((state: any) => state.fetchOptions);
   const dispatch = useDispatch();
-  const displayRows = [];
-
-  // New Object based in Types
-  let tableTypes: any = {
-    TYPE: ['TYPES'],
-    EVENT: ['EVENT'],
-    FOOD: ['FOOD'],
-    REALESTATE: ['REAL ESTATE'],
-    OTHER: ['OTHER'],
-    TOTAL: ['TOTAL']
-  }
+  let displayRows = [];
+  const tableHeader: string[] = ['TYPE'];
+  const tableDisplay: { [index: string]: any } = {};
 
   // Fetching Data
   useEffect(() => {
-    dispatch(actions.fetchData());
+    dispatch(fetchData());
   }, [dispatch]);
 
   // Table Display - Breaking Tables Down into Types
-  for (const table in tables) {
-    if (!tableTypes.TYPE.includes(table)) {
-      tableTypes.TYPE.push(table);
+  for (const day in tables) {
+    if (!tableHeader.includes(day)) {
+      tableHeader.push(day);
     }
 
-    Object.keys(tables[table]).reduce((allPosts: any, post) => {
-      if (post !== 'TOTAL') {
-        allPosts[post].push(tables[table][post].length);
-      } else {
-        allPosts[post].push(tables[table][post]);
+    Object.keys(tables[day]).forEach(post => {
+      if (!tableDisplay[post]) {
+        tableDisplay[post] = [post]
       }
-      return allPosts
-    }, { ...tableTypes });
+
+      if (post !== 'TOTAL') {
+        tableDisplay[post].push(tables[day][post].length);
+      } else {
+        tableDisplay[post].push(tables[day][post]);
+      }
+    });
   }
 
   // Creating JSX array
-  for (const type in tableTypes) {
-    if (type === 'TYPE') {
-      displayRows.push(
-        <Rows
-          key={tableTypes[type][0]}
-          posts={tableTypes[type]}
-          isHeader={true}
-        />
-      );
-    } else {
-      displayRows.push(
-        <Rows
-          key={type}
-          type={type}
-          posts={tableTypes[type]}
-        />
-      );
-    }
+  for (const type in tableDisplay) {
+    displayRows.push(
+      <Rows
+        key={type}
+        type={type}
+        posts={tableDisplay[type]}
+      />
+    );
   }
-
+  
   return (
     <div className="table__container">
+      <Rows
+        key={tableHeader[0]}
+        posts={tableHeader}
+        isHeader
+      />
       {displayRows}
     </div>
   )
