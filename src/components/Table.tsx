@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../store/actions/index';
 
-import Rows from './Column';
+import Rows from './Rows';
 
 const Table: React.FC = () => {
-  const { tables } = useSelector((state: any) => state);
+  const { tables } = useSelector((state: any) => state.fetchOptions);
   const dispatch = useDispatch();
   const displayRows = [];
 
@@ -54,6 +54,7 @@ const Table: React.FC = () => {
       displayRows.push(
         <Rows
           key={type}
+          type={type}
           posts={tableTypes[type]}
         />
       );
