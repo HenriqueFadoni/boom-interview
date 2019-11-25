@@ -1,7 +1,13 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../types/actionTypes';
+
+import { FetchDataInitialStateType } from '../types/ReducerStateTypes';
+import {
+  FetchDataActionTypes,
+  FetchDataSuccessAction
+} from '../types/actionTypes';
 
 // FOOD, EVENT, REAL STATE, OTHER (TYPES)
-const initialState = {
+const initialState: FetchDataInitialStateType = {
   error: false,
   tables: {
     MONDAY: {
@@ -57,8 +63,8 @@ const initialState = {
 }
 
 // Get all data and put it in its respective WEEKDAY/TYPE
-const fetchDataSuccess = (state, { payload }) => {
-  const newTables = payload.week.reduce((allPosts, day) => {
+const fetchDataSuccess = (state: FetchDataInitialStateType, { payload }: FetchDataSuccessAction) => {
+  const newTables = payload.week.reduce((allPosts: any, day) => {
     const weekDay = day.day_of_the_week;
     const postType = day.type.split(' ').join('').toUpperCase();
 
@@ -75,14 +81,14 @@ const fetchDataSuccess = (state, { payload }) => {
 }
 
 // Error Handler
-const fetchDataFail = state => {
+const fetchDataFail = (state: FetchDataInitialStateType) => {
   return {
     ...state,
     error: true
   }
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: FetchDataActionTypes): FetchDataInitialStateType => {
   switch (action.type) {
     case actionTypes.FETCH_DATA_SUCCESS: return fetchDataSuccess(state, action);
     case actionTypes.FETCH_DATA_SUCCESS: return fetchDataFail(state);
