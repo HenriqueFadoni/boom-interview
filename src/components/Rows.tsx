@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../store/actions/index';
 
@@ -8,12 +8,14 @@ interface RowsProps {
   isHeader?: boolean
 }
 
-const Rows: React.FC<RowsProps> = ({ type, posts, isHeader = false }) => {
+const Rows: FunctionComponent<RowsProps> = ({ type, posts, isHeader = false }) => {
   const { typeSelected } = useSelector((state: any) => state.detailOptions);
   const dispatch = useDispatch();
 
   const onClickHandler = () => {
-    if (type && type !== typeSelected) dispatch(actions.selectType(type));
+    if (type && type !== typeSelected && type !== 'TOTAL') {
+      dispatch(actions.selectType(type));
+    }
   }
 
   const row = posts.map((post, index) => (

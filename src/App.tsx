@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
 import Table from './components/Table';
 import DetailedView from './components/DetailedView';
 
-const App: React.FC = () => (
+const App: FunctionComponent = () => (
   <div className="App">
     <Table />
     <DetailedView />
   </div>
-)
+);
 
 export default App;
