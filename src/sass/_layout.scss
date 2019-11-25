@@ -1,5 +1,4 @@
-$color-grey: grey;
-$color-white: white;
+// Table
 
 .table {
 	&__container {
@@ -19,26 +18,58 @@ $color-white: white;
 	&__row {
 		display: grid;
 		grid-template-columns: repeat(8, minmax(min-content, 1fr));
-    grid-template-rows: 1fr;
-    
-    padding: 1rem;
+		grid-template-rows: 1fr;
+
+		padding: 1rem;
 	}
 
 	&__row:hover {
 		cursor: pointer;
 		background-color: lighten($color-grey, 10%);
-  }
-  
-  &--header {
-    display: grid;
-		grid-template-columns: repeat(8, minmax(min-content, 1fr));
-    grid-template-rows: 1fr;
-    padding: 1rem;
+	}
 
-    background-color: darken($color-grey, 10%);
-  }
+	&--header {
+		display: grid;
+		grid-template-columns: repeat(8, minmax(min-content, 1fr));
+		grid-template-rows: 1fr;
+		padding: 1rem;
+
+		background-color: darken($color-grey, 10%);
+	}
 }
 
-.left {
-	text-align: left;
+// Detail View Table
+
+.detail-view {
+	&__container {
+		max-height: 20rem;
+		width: 100vw;
+
+		display: flex;
+		flex-direction: row;
+
+		overflow-y: hidden;
+		overflow-x: scroll;
+	}
+
+	&__column {
+		display: grid;
+		grid-template-columns: 10rem;
+		grid-template-rows: repeat(8, 2rem);
+
+		color: $color-white;
+		font-size: 1.4rem;
+	}
+
+	&--header {
+		background-color: $color-light-grey;
+	}
+
+	&--week-days {
+		background-color: $color-lightest-grey;
+	}
+
+	&--items {
+		background-color: $color-grey-white;
+	}
 }

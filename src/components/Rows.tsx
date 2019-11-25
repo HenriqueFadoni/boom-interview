@@ -21,7 +21,7 @@ const Rows: FunctionComponent<RowsProps> = ({ type, posts, isHeader = false }) =
   const row = posts.map((post, index) => (
     <div
       key={index}
-      className={`${index === 0 && 'left'}`}
+      className={`${index === 0 && 'text-left'}`}
     >
       {post}
     </div>
