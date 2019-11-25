@@ -8,7 +8,23 @@
 
 html {
 	font-size: 62.5%; // 1rem = 10px
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  
+  @include responsive(big-desktop) {
+    font-size: 75%; // 1rem = 12px
+  }
+  @include responsive(tab-land) {
+    font-size: 56.25%; // 1rem = 9px
+  }
+  @include responsive(tab-port) {
+    font-size: 50%; // 1rem = 8px
+  }
+  @include responsive(large-phone) {
+    font-size: 43.8%; // 1rem = 7px
+  }
+  @include responsive(small-phone) {
+    font-size: 38%; // 1rem = 6px
+  }
 }
 
 body {
