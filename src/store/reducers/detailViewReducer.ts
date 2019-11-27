@@ -17,7 +17,7 @@ const selectType = (state: DetailViewInitialStateType, { payload }: SelectTypeAc
 const resetType = (state: DetailViewInitialStateType) => {
   return {
     ...state,
-    typeSelected: null
+    typeSelected: ''
   }
 }
 

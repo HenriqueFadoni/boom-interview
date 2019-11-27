@@ -91,7 +91,7 @@ const fetchDataFail = (state: FetchDataInitialStateType) => {
 const authReducer = (state = initialState, action: FetchDataActionTypes): FetchDataInitialStateType => {
   switch (action.type) {
     case actionTypes.FETCH_DATA_SUCCESS: return fetchDataSuccess(state, action);
-    case actionTypes.FETCH_DATA_SUCCESS: return fetchDataFail(state);
+    case actionTypes.FETCH_DATA_FAIL: return fetchDataFail(state);
     default: return state;
   }
 }

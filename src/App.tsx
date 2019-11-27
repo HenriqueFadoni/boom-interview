@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
-import Table from './components/Table';
-import DetailedView from './components/DetailedView';
+import Table from './components/Table/Table';
+import DetailedView from './components/DetailedView/DetailedView';
 
 const App: FunctionComponent = () => (
   <div className="App">

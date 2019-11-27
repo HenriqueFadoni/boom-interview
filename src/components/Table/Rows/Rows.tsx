@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import * as actions from '../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
-import { AppState } from '../index';
+import { AppState } from '../../../index';
 
 interface RowsProps {
   type?: string,

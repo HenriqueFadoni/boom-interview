@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../store/actions/index';
+import { fetchData } from '../../store/actions/index';
 
-import { AppState } from '../index';
+import { AppState } from '../../index';
 
-import Rows from './Rows';
+import Rows from './Rows/Rows';
 
 interface TableDisplay {
   [index: string]: Array<string | number>

@@ -1,12 +1,12 @@
 import React, { FunctionComponent, ReactChild } from 'react';
 import { useSelector } from 'react-redux';
 
-import WeekDays from './WeekDays';
-import DetailViewRow from './DetailViewRow';
-import { organizeWeekDays } from '../utilities/utilities';
+import WeekDays from './WeekDays/WeekDays';
+import DetailViewRow from './DetailViewRow/DetailViewRow';
+import { organizeWeekDays } from '../../utilities/utilities';
 
-import { AppState } from '../index';
-import { Post } from '../store/types/Post';
+import { AppState } from '../../index';
+import { Post } from '../../store/types/Post';
 
 interface PostsPerUser {
   [index: number]: number[]
@@ -28,7 +28,6 @@ const DetailedView: FunctionComponent = () => {
         postsPerUser = organizeWeekDays(postsPerUser, post);
       });
     }
-    console.log(postsPerUser)
   }
 
   for (const user in postsPerUser) {
