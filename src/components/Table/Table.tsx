@@ -11,7 +11,7 @@ interface TableDisplay {
 }
 
 const Table: FunctionComponent = () => {
-  const { tables } = useSelector((state: any) => state.fetchOptions);
+  const { tables } = useSelector((state: AppState) => state.fetchOptions);
   const dispatch = useDispatch();
   let displayRows = [];
   const tableHeader: string[] = ['TYPE'];
@@ -34,6 +34,7 @@ const Table: FunctionComponent = () => {
       }
 
       if (post !== 'TOTAL') {
+        // @ts-ignore
         tableDisplay[post].push(tables[day][post].length); //ERROR HERE
       } else {
         tableDisplay[post].push(tables[day][post]);

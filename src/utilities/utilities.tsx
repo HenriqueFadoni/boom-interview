@@ -1,4 +1,10 @@
-export const organizeWeekDays = (postsPerUser: any, post: any) => {
+import { Post } from '../store/types/Post';
+
+interface PostsPerUser {
+  [index: number]: number[]
+}
+
+export const organizeWeekDays = (postsPerUser: PostsPerUser, post: Post) => {
   let sum;
 
   switch (post.day_of_the_week.toString()) {

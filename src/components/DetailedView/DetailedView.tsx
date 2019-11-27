@@ -13,13 +13,14 @@ interface PostsPerUser {
 }
 
 const DetailedView: FunctionComponent = () => {
-  const { tables } = useSelector((state: any) => state.fetchOptions);
+  const { tables } = useSelector((state: AppState) => state.fetchOptions);
   const { typeSelected } = useSelector((state: AppState) => state.detailOptions);
   let postsPerUser: PostsPerUser = {};
   let display: ReactChild[] = [];
 
   for (const weekDays in tables) {
     if (typeSelected) {
+      // @ts-ignore
       tables[weekDays][typeSelected].forEach((post: Post) => {
         if (!postsPerUser[post.client_id]) {
           postsPerUser[post.client_id] = [0, 0, 0, 0, 0, 0, 0];

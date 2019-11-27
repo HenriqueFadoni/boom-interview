@@ -64,10 +64,11 @@ const initialState: FetchDataInitialStateType = {
 
 // Get all data and put it in its respective WEEKDAY/TYPE
 const fetchDataSuccess = (state: FetchDataInitialStateType, { payload }: FetchDataSuccessAction) => {
-  const newTables = payload.week.reduce((allPosts: { [index: string]: any }, day) => {
+  const newTables = payload.week.reduce((allPosts: { [index: string]: TableElement }, day) => {
     const weekDay = day.day_of_the_week;
     const postType = day.type.split(' ').join('').toUpperCase();
 
+    // @ts-ignore
     allPosts[weekDay][postType].push(day);
     allPosts[weekDay].TOTAL += 1;
 
