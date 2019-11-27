@@ -2,14 +2,20 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../store/actions/index';
 
+import { AppState } from '../index';
+
 import Rows from './Rows';
+
+interface TableDisplay {
+  [index: string]: Array<string | number>
+}
 
 const Table: FunctionComponent = () => {
   const { tables } = useSelector((state: any) => state.fetchOptions);
   const dispatch = useDispatch();
   let displayRows = [];
   const tableHeader: string[] = ['TYPE'];
-  const tableDisplay: { [index: string]: any } = {};
+  const tableDisplay: TableDisplay = {};
 
   // Fetching Data
   useEffect(() => {
@@ -22,13 +28,13 @@ const Table: FunctionComponent = () => {
       tableHeader.push(day);
     }
 
-    Object.keys(tables[day]).forEach(post => {
+    Object.keys(tables[day]).forEach((post: string) => {
       if (!tableDisplay[post]) {
         tableDisplay[post] = [post]
       }
 
       if (post !== 'TOTAL') {
-        tableDisplay[post].push(tables[day][post].length);
+        tableDisplay[post].push(tables[day][post].length); //ERROR HERE
       } else {
         tableDisplay[post].push(tables[day][post]);
       }
@@ -45,7 +51,7 @@ const Table: FunctionComponent = () => {
       />
     );
   }
-  
+
   return (
     <div className="table__container">
       <Rows

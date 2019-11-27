@@ -1,6 +1,7 @@
 import { Post } from './Post';
 
 export interface TableElement {
+  [index: string]: Post[] | number,
   EVENT: Post[],
   FOOD: Post[],
   REALESTATE: Post[],
@@ -11,13 +12,7 @@ export interface TableElement {
 export interface FetchDataInitialStateType {
   error: boolean,
   tables: {
-    MONDAY: TableElement,
-    TUESDAY: TableElement,
-    WEDNESDAY: TableElement,
-    THURSDAY: TableElement,
-    FRIDAY: TableElement,
-    SATURDAY: TableElement,
-    SUNDAY: TableElement,
+    [index: string]: TableElement
   }
 }
 

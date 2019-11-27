@@ -2,14 +2,16 @@ import React, { FunctionComponent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../store/actions/index';
 
+import { AppState } from '../index';
+
 interface RowsProps {
-  type?: string | any,
-  posts: Array<string>,
+  type?: string,
+  posts: Array<string | number>,
   isHeader?: boolean
 }
 
 const Rows: FunctionComponent<RowsProps> = ({ type, posts, isHeader = false }) => {
-  const { typeSelected } = useSelector((state: any) => state.detailOptions);
+  const { typeSelected } = useSelector((state: AppState) => state.detailOptions);
   const dispatch = useDispatch();
 
   const onClickHandler = () => {

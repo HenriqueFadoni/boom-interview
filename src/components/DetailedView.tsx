@@ -5,15 +5,22 @@ import WeekDays from './WeekDays';
 import DetailViewRow from './DetailViewRow';
 import { organizeWeekDays } from '../utilities/utilities';
 
+import { AppState } from '../index';
+import { Post } from '../store/types/Post';
+
+interface PostsPerUser {
+  [index: number]: number[]
+}
+
 const DetailedView: FunctionComponent = () => {
   const { tables } = useSelector((state: any) => state.fetchOptions);
-  const { typeSelected } = useSelector((state: any) => state.detailOptions);
-  let postsPerUser: any = {};
+  const { typeSelected } = useSelector((state: AppState) => state.detailOptions);
+  let postsPerUser: PostsPerUser = {};
   let display: ReactChild[] = [];
 
   for (const weekDays in tables) {
     if (typeSelected) {
-      tables[weekDays][typeSelected].forEach((post: any) => {
+      tables[weekDays][typeSelected].forEach((post: Post) => {
         if (!postsPerUser[post.client_id]) {
           postsPerUser[post.client_id] = [0, 0, 0, 0, 0, 0, 0];
         }
@@ -21,6 +28,7 @@ const DetailedView: FunctionComponent = () => {
         postsPerUser = organizeWeekDays(postsPerUser, post);
       });
     }
+    console.log(postsPerUser)
   }
 
   for (const user in postsPerUser) {

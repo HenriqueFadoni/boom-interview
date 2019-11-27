@@ -1,6 +1,6 @@
 import * as actionTypes from '../types/actionTypes';
 
-import { FetchDataInitialStateType } from '../types/ReducerStateTypes';
+import { FetchDataInitialStateType, TableElement } from '../types/ReducerStateTypes';
 import {
   FetchDataActionTypes,
   FetchDataSuccessAction
@@ -64,7 +64,7 @@ const initialState: FetchDataInitialStateType = {
 
 // Get all data and put it in its respective WEEKDAY/TYPE
 const fetchDataSuccess = (state: FetchDataInitialStateType, { payload }: FetchDataSuccessAction) => {
-  const newTables = payload.week.reduce((allPosts: any, day) => {
+  const newTables = payload.week.reduce((allPosts: { [index: string]: any }, day) => {
     const weekDay = day.day_of_the_week;
     const postType = day.type.split(' ').join('').toUpperCase();
 
